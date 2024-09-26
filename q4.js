@@ -8,11 +8,6 @@ class Node {
   }
 }
 
-const head = new Node(1);
-head.next = new Node(2);
-head.next.next = new Node(3);
-head.next.next.next = new Node(4);
-
 function swapNodes(head) {
   if (!head || !head.next) return head;
 
@@ -21,10 +16,11 @@ function swapNodes(head) {
 
   let prev = null;
   let curr = head;
+//   while loop will exit on !curr with even numbers in list and on !curr.next with odd numbers in list
   while (curr && curr.next) {
     // temp will point to 2 items ahead in list
     let temp = curr.next.next;
-    // move curr one past the item currently next to it in the list
+    // move curr pointer one past the item currently next to it in the list
     curr.next.next = curr;
     // on first pass
     if (!prev) {
@@ -43,3 +39,18 @@ function swapNodes(head) {
 
   return new_head;
 }
+
+let head = new Node(1);
+head.next = new Node(2);
+head.next.next = new Node(3);
+head.next.next.next = new Node(4);
+head.next.next.next.next = new Node(5);
+head.next.next.next.next.next = new Node(6);
+
+let swap = swapNodes(head);
+let res = [];
+while (swap) {
+  res.push(swap.data);
+  swap = swap.next;
+}
+console.log(res);
